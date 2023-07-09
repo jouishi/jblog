@@ -10,14 +10,39 @@ class BlogsController < ApplicationController
     @blog = Blog.new
   end
 
+  def show
+  end
 
+  def edit
+  end
 
+  def create
+    @blog = Blog.new(blog_params)
 
+      if @blog.save
+        redirect_to blog_url(@blog), notice: "Blog was successfully created." 
+      else
+        render :new, status: :unprocessable_entity 
+      end
+  end
 
+    def update
+    
+      if @blog.update(blog_params)
+        redirect_to blog_url(@blog), notice: "Blog was successfully updated." 
+        
+      else
+         render :edit, status: :unprocessable_entity 
+      end
+    end
 
+  def destroy
+    @blog.destroy
 
-
-
+    
+       redirect_to blogs_url, notice: "Blog was successfully destroyed." 
+      
+  end
 
 
 
