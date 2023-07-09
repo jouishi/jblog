@@ -26,7 +26,7 @@
       <tr>
         <td><%= blog.title %></td>
         <td><%= blog.description %></td>
-        <td><%= video_tag(blog.picture.to_s, height: "50%", width: "50%",loop: true,autoplay: true,muted: true,controls: true )%></td>
+        <td><%= video_tag(blog.movie.to_s, height: "50%", width: "50%",loop: true,autoplay: true,muted: true,controls: true )%></td>
         <td><%= blog.published_at %></td>
         <td><%= link_to 'Show', blog %></td>
         <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
