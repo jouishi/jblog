@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <strong>Picture:</strong>
-  <%= @blog.movie %>
+  <strong>Movie:</strong>
+  <%= video_tag(@blog.movie.to_s, height: "50%", width: "50%",loop: true,autoplay: true,muted: true,controls: true )%>
 </p>
 
 <p>

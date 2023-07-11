@@ -1,41 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="sampleWrap">
+  <div class="bkRGBA">
+    </header>
+    <div class="video">
+     
+      <%= video_tag("jdiary24.mp4", width: "95%", height: "50%", loop: true, autoplay: true, muted: true) %>
+    </div> 
+
+    <h1>Blogs</h1>
+
+   <div class="row">
+  <% @blogs.each do |blog| %>
+    <div class="col-md-4">
+      <div class="card my-3" style="width: 12rem;">
+        <%= video_tag(blog.movie.to_s, class: "card-img-top", loop: true, autoplay: true, muted: true, controls: true, width: "100%", height: "auto") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= blog.title %></h5>
+          <p class="card-text">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p> <!-- published_at を表示 -->
+          <%= link_to 'Show', blog, class: 'btn btn-dark', id: "show-link-#{blog.id}", style: 'color: red;' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 
-  <div class="catch-copy">
-     <div class="video">
-       <%= video_tag("jd99.mp4",width:"75%",height:"50%",  loop: true,autoplay: true,muted: true,  ) %>
-     </div> 
-  </div>
 
-<h1>Blogs</h1>
- 
+<script>
+  <% @blogs.each do |blog| %>
+    var showLink<%= blog.id %> = document.getElementById('show-link-<%= blog.id %>');
+    showLink<%= blog.id %>.addEventListener('mouseover', function() {
+      showLink<%= blog.id %>.style.color = 'green';
+    });
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Movie</th>
-      <th>Published at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.description %></td>
-        <td><%= video_tag(blog.movie.to_s, height: "50%", width: "50%",loop: true,autoplay: true,muted: true,controls: true )%></td>
-        <td><%= blog.published_at %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>
+    showLink<%= blog.id %>.addEventListener('mouseout', function() {
+      showLink<%= blog.id %>.style.color = 'red';
+    });
+  <% end %>
+</script>
