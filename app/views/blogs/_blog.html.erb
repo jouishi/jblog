@@ -1,0 +1,8 @@
+<div class="card"> 
+  <%= link_to video_tag(blog.movie.to_s, class: :card__img,  ),blog_path(blog) %>
+  <div class="card__body">
+    <%= link_to blog.title,blog_path(blog) , class: :card__title%>
+    
+    <%= link_to blog.user.name, user_path(blog.user), class: :card__user %>
+  </div>
+</div>

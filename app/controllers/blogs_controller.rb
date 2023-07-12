@@ -15,6 +15,19 @@ class BlogsController < ApplicationController
   end
 
   def edit
+
+    @blog = Blog.find(params[:id])
+    
+
+  end
+  def update
+    @blog = Blog.find(params[:id])
+  
+    if @blog.update(prototype_params)
+      redirect_to blog_path(@blog)
+    else
+      render 'blogs/edit'
+    end
   end
 
   def create
@@ -58,7 +71,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:title, :description, :movie, :published_at)
+    params.require(:blog).permit(:title, :description, :movie, :published_at).merge(user_id: current_user.id )
   end
 
 

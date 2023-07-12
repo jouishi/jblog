@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Jblog</title>
+    <title>JDiary</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -37,6 +37,7 @@
       
       <div class="container">
         <div class="navbar-brand">
+        
           <%= link_to root_path do %>
             <%= image_tag("logo.png", alt: "Jblog Logo", width: "70px", height: "70px") %>
           <% end %>
@@ -48,6 +49,14 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
+          <li class="nav-item">
+          <% if user_signed_in? %>
+      <div class="greeting"> 
+  <%#= "Hello".html_safe %>
+  <%= link_to "Hello!#{current_user.name}!!", user_path(current_user), class: "greeting__link", style: "color: red !important;" %>
+</div>
+      <% end %>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Home</a>
             </li>
@@ -60,9 +69,29 @@
           </ul>
         </div>
 
-        <div class="text-center">
-          <%= link_to 'New Blog', new_blog_path %>
+       
+        <% if user_signed_in? %>
+             <div class="nav__right">
+              <li>
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: :nav__btn %>
+                <%= link_to "New Proto", new_blog_path, class: :nav__btn %>
+              </li>
+          <% else %>
+          <%# ログインしているときは以下を表示するようにしましょう %>
+            <%# <div class="nav__right"> %>
+              <%# <%= link_to "ログアウト", root_path, class: :nav__logout %>
+              <%# <%= link_to "New Proto", root_path, class: :nav__btn %>
+            <%# </div> %>
+          <%# // ログインしているときは上記を表示するようにしましょう %>
+          <%# ログインしていないときは以下を表示するようにしましょう %>
+            <div class="nav__right">
+              <%= link_to "Log In", new_user_session_path, class: :nav__btn, style: "color: red;" %>
+
+              <%= link_to "Sign Up", new_user_registration_path, class: :nav__btn %>
+            </div>
+          <%# // ログインしていないときは上記を表示するようにしましょう %>
         </div>
+        <% end %>
       </div>
     </nav>
 

@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
+<% if user_signed_in? && current_user.id == @blog.user_id %>
+          <div class="prototype__manage">
+             <%= link_to "Edit", edit_blog_path(@blog),class: :prototype__btn %>
+             <%= link_to "Delete", blog_path(@blog), class: :prototype__btn, method: :delete %>
+          </div>
+        <% end %>
 
 <p>
   <strong>Title:</strong>
@@ -20,5 +26,4 @@
   <%= @blog.published_at %>
 </p>
 
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
