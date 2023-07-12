@@ -5,6 +5,7 @@ class CreateBlogs < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :movie
       t.date :published_at
+      t.references :user,            null: false, foreign_key: true
 
       t.timestamps
     end
