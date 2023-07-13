@@ -58,10 +58,10 @@ a {
   display: inline-block;
   padding: 0.4em 1.6em;
   font-size: 0.8em;
-  color: #87CEFA;
+  color: #D3A98A;
   text-decoration: none;
   user-select: none;
-  border: 1px #87CEFA solid;
+  border: 1px #D3A98A solid;
   border-radius: 3px;
   transition: 0.4s ease;
 }
@@ -320,4 +320,13 @@ a {
   .table{
     width: 100%;
   }
+}
+
+.custom-card {
+  /* 既存のスタイル */
+  width: 60%;
+  border: 2px solid black;
+  padding: 10px;
+  /* 影のスタイル */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }

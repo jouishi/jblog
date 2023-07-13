@@ -1,35 +1,49 @@
 <div class="sampleWrap">
   <div class="bkRGBA">
-    </header>
     <div class="video">
-     
       <%= video_tag("theop.mp4", width: "95%", height: "50%", loop: true, autoplay: true, muted: true) %>
     </div> 
 
     <h1>Blogs</h1>
 
-   <div class="row">
-  <% @blogs.each do |blog| %>
-    <div class="col-md-4">
-      <div class="card my-3" style="width: 12rem;">
-        <%= video_tag(blog.movie.to_s, class: "card-img-top", loop: true, autoplay: true, muted: true, controls: true, width: "100%", height: "auto") %>
-        <div class="card-body">
-          <h5 class="card-title"><%= blog.title %></h5>
-          <p class="card-text">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p> <!-- published_at を表示 -->
-          <%= link_to 'Show', blog, class: 'btn btn-dark', id: "show-link-#{blog.id}", style: 'color: red;' %>
+    <div class="row justify-content-center">
+      <% @blogs.each do |blog| %>
+        <div class="col-md-4">
+          <div class="card my-3 mx-md-auto d-flex flex-column align-items-stretch my-custom-card" style="width: 60%;">
+            <%= video_tag(blog.movie.to_s, class: "card-img-top", loop: true, autoplay: true, muted: true, controls: true, width: "100%", height: "auto") %>
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: 16px !important;"><%= blog.title %></h5>
+              <p class="card-text" style="font-size: 12px !important;">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
+              <%= link_to 'Show', blog, class: 'btn btn-dark', id: "show-link-#{blog.id}", style: 'color: red !important; font-size: 12px !important;' %>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
 
+<style>
+.sampleWrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.my-custom-card {
+  border: 5px groove  #8B4513;;
+  padding: 10px;
+  background-image: url(futi.jpeg);
+  background-size: cover;
+}
+
+</style>
 
 
 <script>
   <% @blogs.each do |blog| %>
     var showLink<%= blog.id %> = document.getElementById('show-link-<%= blog.id %>');
     showLink<%= blog.id %>.addEventListener('mouseover', function() {
-      showLink<%= blog.id %>.style.color = 'green';
+      showLink<%= blog.id %>.style.color = 'yellow';
     });
 
     showLink<%= blog.id %>.addEventListener('mouseout', function() {

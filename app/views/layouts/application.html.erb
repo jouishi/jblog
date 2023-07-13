@@ -51,21 +51,13 @@
           <ul class="navbar-nav">
           <li class="nav-item">
           <% if user_signed_in? %>
-      <div class="greeting"> 
-  <%#= "Hello".html_safe %>
-  <%= link_to "Hello!#{current_user.name}!!", user_path(current_user), class: "greeting__link", style: "color: red !important;" %>
+  <div class="greeting">
+  <%= link_to "Hello!", user_path(current_user), class: "greeting__link", style: "color:#FF8C00  !important; font-size: 40px; font-family: 'Arial', cursive;" %>
+  <%= link_to "#{current_user.name}!!", user_path(current_user), class: "greeting__link", style: "color: red !important; font-size: 40px; font-family: 'Arial', sans-serif;" %>
 </div>
-      <% end %>
+<% end %>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">Blog</a>
-            </li>
+           
           </ul>
         </div>
 
@@ -73,8 +65,9 @@
         <% if user_signed_in? %>
              <div class="nav__right">
               <li>
-                <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: :nav__btn %>
-                <%= link_to "New Proto", new_blog_path, class: :nav__btn %>
+              <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: :nav__btn, style: "color: #FF8C00;" %>
+
+                <%= link_to "New Blog", new_blog_path, class: :nav__btn, style: "color: #FF8C00;" %>
               </li>
           <% else %>
           <%# ログインしているときは以下を表示するようにしましょう %>
@@ -85,9 +78,9 @@
           <%# // ログインしているときは上記を表示するようにしましょう %>
           <%# ログインしていないときは以下を表示するようにしましょう %>
             <div class="nav__right">
-              <%= link_to "Log In", new_user_session_path, class: :nav__btn, style: "color: red;" %>
+              <%= link_to "Log In", new_user_session_path, class: :nav__btn, style: "color: #FF8C00;" %>
 
-              <%= link_to "Sign Up", new_user_registration_path, class: :nav__btn %>
+              <%= link_to "Sign Up", new_user_registration_path, class: :nav__btn, style: "color: #FF8C00;"%>
             </div>
           <%# // ログインしていないときは上記を表示するようにしましょう %>
         </div>
