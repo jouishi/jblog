@@ -8,7 +8,7 @@ development:
   username: root
   password:
   host: localhost
-  database:jblog_development
+  database: jblog_development
 
 test:
   <<: *default
