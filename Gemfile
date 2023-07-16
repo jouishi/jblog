@@ -64,3 +64,7 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 
 gem 'devise'
+
+group :production do
+  gem 'pg'
+end
