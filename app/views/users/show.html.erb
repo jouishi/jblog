@@ -1,24 +1,21 @@
 <div class="main">
   <div class="inner">
     <div class="user__wrapper">
+      
       <h2 class="page-heading">
-        <%= @user.name%>
-      </h2>
-      <table class="table">
-        <tbody>
-          <tr>
-            <th class="table__col1">name</th>
-            <td class="table__col2"><%= @user.name %></td>
-          </tr>
-         
-        </tbody>
-      </table>
-      <h2 class="page-heading">
-        <%= @user.name%>'s blog
+        <%= @user.name %>'s blog
       </h2>
       <div class="user__card">
-       <%= render partial: 'blogs/blog' , collection:@user.blogs %>
-        <%# 部分テンプレートでそのユーザーが投稿したプロトタイプ投稿一覧を表示する %>
+        <% @user.blogs.each do |blog| %>
+          <div class="blog__item">
+            <%= video_tag(blog.movie.to_s, class: "blog__video", loop: true, autoplay: true, muted: true, controls: true) %>
+            <div class="blog__content">
+              <h3 class="blog__title"><%= blog.title %></h3>
+              <p class="blog__date">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
+              <%= link_to 'Show', blog, class: 'btn btn-dark', style: 'color: red !important; font-size: 12px !important;' %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

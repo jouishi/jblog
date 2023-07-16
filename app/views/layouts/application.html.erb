@@ -26,7 +26,7 @@
       }
 
       .container.content {
-        margin-top: 80px; /* ナビゲーションバーの高さを指定 */
+        margin-top: 80px; 
       }
     </style>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -70,19 +70,12 @@
                 <%= link_to "New Blog", new_blog_path, class: :nav__btn, style: "color: #FF8C00;" %>
               </li>
           <% else %>
-          <%# ログインしているときは以下を表示するようにしましょう %>
-            <%# <div class="nav__right"> %>
-              <%# <%= link_to "ログアウト", root_path, class: :nav__logout %>
-              <%# <%= link_to "New Proto", root_path, class: :nav__btn %>
-            <%# </div> %>
-          <%# // ログインしているときは上記を表示するようにしましょう %>
-          <%# ログインしていないときは以下を表示するようにしましょう %>
+          
             <div class="nav__right">
               <%= link_to "Log In", new_user_session_path, class: :nav__btn, style: "color: #FF8C00;" %>
 
               <%= link_to "Sign Up", new_user_registration_path, class: :nav__btn, style: "color: #FF8C00;"%>
             </div>
-          <%# // ログインしていないときは上記を表示するようにしましょう %>
         </div>
         <% end %>
       </div>
