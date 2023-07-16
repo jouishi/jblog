@@ -1,42 +1,93 @@
-# テーブル設計
+# アプリケーション名
 
-## users テーブル
+J DIARY
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
+# アプリケーション概要
 
-### Association
+ユーザー同士が趣味の動画を投稿しあって、お互いにコメントし合い、理解を深めていくアプリ。
 
-has_many :blogs
-has_many :comments, dependent: :destroy
+# URL
 
-## blogs テーブル
+https://jblog-psq4.onrender.com/
 
-| Column       | Type   | Options     |
-| ------------ | ------ | ----------- |
-| title        | string |  
-| description  | text   |
-| movie        | string |  
-| published_at | date   |
-| user         | references | null: false, foreign_key: true |
+# テスト用アカウント
 
-### Association
+メールアドレス : a@a
 
-mount_uploader :movie, MovieUploader
-belongs_to :user
-has_many :comments
+パスワード : 08251023
 
-## comments テーブル
+メールアドレス : z@z
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| blog   | references | null: false, foreign_key: true |
-| text   | text       |  
-### Association
+パスワード : 08251023
 
-belongs_to :blog 
-belongs_to :user
+# 利用方法
+
+## 動画投稿
+
+1.ナビゲーションバー右にあるsign upでユーザー新規登録をする。
+
+2.ナビゲーションバー右に表示されるNew Blogから新規投稿（タイトル、こだわったポイント、動画、日付）を入力して投稿
+する。(今は動画のみで静止画像は投稿できません)
+
+## コメント機能
+
+1.ログインしているユーザーであれば投稿に感想などのコメントを残す事ができる。
+
+# アプリケーションを作成した背景
+
+気軽にスマホで動画が撮れる時代で、社会的にも高齢化や、結婚率の低下が問題になり、時間がある人たちが増えた。健全な趣味の動画を録り、それぞれ意見交換ができる場があれば趣味がより一層深まり、楽しくなるのではないかと思いました。
+
+# 洗い出した要件
+
+
+# 実装した機能についてのGIF
+
+https://gyazo.com/264f632fd4ae395b175cb702b6f3c0a1
+
+一覧表示の時点で動画が見れるようにして、詳細ボタンで入って詳しく見れるようになっています。
+
+https://gyazo.com/fc62a262b5ad15d9a38d41ae95e5e680
+
+コメントを残す事ができます。
+
+# 実装予定の機能
+
+ジャンルで分けて（photo,music,food,pramodelなど）投稿、検索できるように実装予定。
+
+# データベース設計
+
+https://gyazo.com/e4410a2ebbd6f7bed4fd3d1757161878
+
+# 画面遷移図
+
+https://gyazo.com/642eca18411e2ea58d5b5544a6002e3c
+
+
+# 開発環境
+
+
+Ruby on Rails
+
+# 工夫したポイント
+
+トップページのmovieや一覧表示のCSSです。トップページを見て、ユーザーがワクワクするような閲覧したくなるような気持ちになるように心がけました。
+動画投稿にすることで、作成したものや指の動きなど細部まで見て楽しめるようにしました。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
