@@ -1,24 +1,42 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| name               | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+has_many :blogs
+has_many :comments, dependent: :destroy
 
-* Configuration
+## blogs テーブル
 
-* Database creation
+| Column       | Type   | Options     |
+| ------------ | ------ | ----------- |
+| title        | string |  
+| description  | text   |
+| movie        | string |  
+| published_at | date   |
+| user         | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+mount_uploader :movie, MovieUploader
+belongs_to :user
+has_many :comments
 
-* Services (job queues, cache servers, search engines, etc.)
+## comments テーブル
 
-* Deployment instructions
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| blog   | references | null: false, foreign_key: true |
+| text   | text       |  
+### Association
 
-* ...
+belongs_to :blog 
+belongs_to :user
