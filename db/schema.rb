@@ -24,11 +24,13 @@ ActiveRecord::Schema.define(version: 2023_07_16_110837) do
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "blog_id"
+    t.bigint "user_id", null: false
+    t.bigint "blog_id", null: false
     t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id"], name: "index_comments_on_blog_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -45,4 +47,6 @@ ActiveRecord::Schema.define(version: 2023_07_16_110837) do
   end
 
   add_foreign_key "blogs", "users"
+  add_foreign_key "comments", "blogs"
+  add_foreign_key "comments", "users"
 end
