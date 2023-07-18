@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @blogs = Blog.order(created_at: :desc)
@@ -18,7 +19,14 @@ class BlogsController < ApplicationController
     @comment = Comment.new
     @comments = @blog.comments.includes(:user)
   end
+  def search
+    # パラメータから検索キーワードを取得
+    keyword = params[:keyword]
 
+    # キーワードを使ってブログを検索
+    @blogs = Blog.where("title LIKE ?", "%#{keyword}%").order(created_at: :desc)
+  end
+end
   def edit
     @blog = Blog.find(params[:id])
   end
@@ -67,4 +75,3 @@ class BlogsController < ApplicationController
   def blog_params
     params.require(:blog).permit(:title, :description, :movie, :published_at).merge(user_id: current_user.id)
   end
-end
