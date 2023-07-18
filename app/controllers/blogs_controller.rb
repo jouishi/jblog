@@ -4,6 +4,10 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.order(created_at: :desc)
   end
+  def search
+    # 検索処理を実装する
+    # 例えば、params[:keyword]で検索キーワードを取得し、該当するブログを検索するなど
+  end
 
   def new
     @blog = Blog.new

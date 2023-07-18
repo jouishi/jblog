@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users
-  root to: 'blogs#index'
-  resources :blogs do
-  resources :comments, only: :create
+
+  resources :users, only: [:index, :show] do
+    collection do
+      get 'search', to: 'users#search', as: 'search_users'
+    end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :blogs do
+    resources :comments, only: :create
+  end
+
+  get 'search', to: 'blogs#search', as: 'search_blogs'
+
+  root to: 'blogs#index'
 end
