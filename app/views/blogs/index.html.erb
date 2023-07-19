@@ -7,8 +7,10 @@
 
          <h1 style="background-color: red; color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto;">Blogs</h1>
          <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
-  <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-  <%= form.submit "検索", class: "search-btn" %>
+         <%= form.text_field :keyword, placeholder: "Search", class: "search-input", style: "width: 30%; height: 50px;" %>
+
+
+  <%= form.submit "Search Blog", class: "search-btn" %>
 <% end %>
 
 
