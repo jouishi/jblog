@@ -120,3 +120,11 @@
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
+  .search-btn {
+    background-color: #000;
+    color: #888;
+  }
+
+  .search-btn:hover {
+    background-color: red !important;
+  }
