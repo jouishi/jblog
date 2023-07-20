@@ -5,7 +5,7 @@
     </div> 
 
 
-         <h1 style="background-color: red; color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto;">Blogs</h1>
+       <h1 style="background-color: red; color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto; border: 10px solid black;">Blogs</h1>
          <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
          <%= form.text_field :keyword, placeholder: "Search", class: "search-input", style: "width: 30%; height: 50px; border: 2px solid #FFA500;" %>
 
