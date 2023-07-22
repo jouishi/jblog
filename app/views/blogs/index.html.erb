@@ -4,22 +4,18 @@
       <%= video_tag("theop.mp4", width: "95%", height: "50%", loop: true, autoplay: true, muted: true) %>
     </div> 
 
+    <h1 style="background-color: red; color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto; border: 10px solid black;">Blogs</h1>
 
-       <h1 style="background-color: red; color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto; border: 10px solid black;">Blogs</h1>
-         <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
-         <%= form.text_field :keyword, placeholder: "Search", class: "search-input", style: "width: 30%; height: 50px; border: 2px solid #FFA500;" %>
-
-
-  <%= form.submit "Search Blog", class: "search-btn" %>
-
-<% end %>
-
+    <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
+      <%= form.text_field :keyword, placeholder: "Search", class: "search-input", style: "width: 30%; height: 50px; border: 2px solid #FFA500;" %>
+      <%= form.submit "Search Blog", class: "search-btn" %>
+    <% end %>
 
     <div class="row justify-content-center">
       <% @blogs.each do |blog| %>
         <div class="col-md-4">
-          <div class="card my-3 mx-md-auto d-flex flex-column align-items-stretch my-custom-card" style="width: 60%;">
-            <%= video_tag(blog.movie.to_s, class: "card-img-top", loop: true, autoplay: true, muted: true, controls: true, width: "100%", height: "auto") %>
+          <div class="card my-3 mx-md-auto d-flex flex-column align-items-stretch my-custom-card" style="width: 60%; min-height: 400px;">
+            <%= video_tag(blog.movie.to_s, class: "card-img-top my-custom-video", loop: true, autoplay: true, muted: true, controls: true, width: "100%") %>
             <div class="card-body">
               <h5 class="card-title" style="font-size: 16px !important;"><%= blog.title %></h5>
               <p class="card-text" style="font-size: 12px !important;">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
@@ -44,6 +40,10 @@
     padding: 10px;
     background-image: url(futi.jpeg);
     background-size: cover;
+  }
+
+  .my-custom-video {
+    height: 200px; /* 動画の高さを固定する */
   }
 </style>
 
