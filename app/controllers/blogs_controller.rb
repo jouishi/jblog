@@ -1,24 +1,11 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, except: [:index, :show, :search]
+  before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
     @blogs = Blog.order(created_at: :desc)
   end
-  def search
-    # 検索処理を実装する
-    # 例えば、params[:keyword]で検索キーワードを取得し、該当するブログを検索するなど
-  end
 
-  def new
-    @blog = Blog.new
-  end
-
-  def show
-    @blog = Blog.find(params[:id])
-    @comment = Comment.new
-    @comments = @blog.comments.includes(:user)
-  end
   def search
     # パラメータから検索キーワードを取得
     keyword = params[:keyword]
@@ -26,18 +13,24 @@ class BlogsController < ApplicationController
     # キーワードを使ってブログを検索
     @blogs = Blog.where("title LIKE ?", "%#{keyword}%").order(created_at: :desc)
   end
-end
+
+  def new
+    @blog = Blog.new
+  end
+
+  def show
+    @comment = Comment.new
+    @comments = @blog.comments.includes(:user)
+  end
+
   def edit
-    @blog = Blog.find(params[:id])
   end
 
   def update
-    @blog = Blog.find(params[:id])
-
-    if @blog.update(prototype_params)
-      redirect_to blog_path(@blog)
+    if @blog.update(blog_params)
+      redirect_to blog_url(@blog), notice: 'Blog was successfully updated.'
     else
-      render 'blogs/edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -51,18 +44,8 @@ end
     end
   end
 
-  def update
-    if @blog.update(blog_params)
-      redirect_to blog_url(@blog), notice: 'Blog was successfully updated.'
-
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @blog.destroy
-
     redirect_to blogs_url, notice: 'Blog was successfully destroyed.'
   end
 
@@ -75,3 +58,9 @@ end
   def blog_params
     params.require(:blog).permit(:title, :description, :movie, :published_at).merge(user_id: current_user.id)
   end
+
+  # もし必要ならばmove_to_indexメソッドを定義してください
+   def move_to_index
+     
+  end
+end
