@@ -12,22 +12,27 @@
       <%= video_tag(@blog.movie.to_s, height: "600px", width: "700px",  loop: true, autoplay: true, muted: true, controls: true) %>
     </p>
 
-    <p>
-      <strong>Title:</strong>
-      <%= @blog.title %>
-    </p>
+   <div class="page-center">
+  <div class="blog-container">
+    <div class="blog-item">
+      <div class="label">Title:</div>
+      <div class="content"><%= @blog.title %></div>
+    </div>
 
-    <p>
-      <strong>Description:</strong>
-      <%= @blog.description %>
-    </p>
+    <div class="blog-item">
+      <div class="label">Description:</div>
+      <div class="content"><%= @blog.description %></div>
+    </div>
 
-    <p>
+    <div class="blog-item">
+      <div class="label">Published at:</div>
+      <div class="content"><%= @blog.published_at %></div>
+    </div>
+  </div>
+</div>
 
-    <p>
-      <strong>Published at:</strong>
-      <%= @blog.published_at %>
-    </p>
+
+
 
     <div class="container">
       <% if user_signed_in? %>

@@ -128,3 +128,39 @@
   .search-btn:hover {
     background-color: red !important;
   }
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .page-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .blog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* 必要に応じて適切な幅を設定 */
+  }
+  
+  .blog-item {
+    width: 100%; /* 要素の幅を100%に設定 */
+    border: 2px solid #000;
+    padding: 10px;
+    margin: 10px 0; /* 上下の余白を設定 */
+    text-align: center;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .content {
+    margin-top: 5px; /* ラベルとコンテンツの間に余白を設定 */
+  }
+  
+  
