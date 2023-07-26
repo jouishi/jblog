@@ -168,6 +168,18 @@
     color: #FF0000; /* 赤色の文字色 */
     border-bottom: 1px solid #000000; 
   }
+  footer {
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+  padding: 100px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-top: 20px; /* 余白を追加してフッターを下に移動 */
+}
+
+  
   
   
   

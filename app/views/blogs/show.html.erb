@@ -1,61 +1,70 @@
-    <p id="notice"><%= notice %></p>
-    <div style="text-align: center;">
-    <% if user_signed_in? && current_user.id == @blog.user_id %>
-      <div class="prototype__manage">
-        <%= link_to "Edit", edit_blog_path(@blog), class: :prototype__btn %>
-        <%= link_to "Delete", blog_path(@blog), class: :prototype__btn, method: :delete %>
+<style>
+  .back-link {
+    margin-top: 50px;
+    position: relative;
+  }
+
+  footer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+</style>
+
+<div style="text-align: center;">
+  <% if user_signed_in? && current_user.id == @blog.user_id %>
+    <div class="prototype__manage">
+      <%= link_to "Edit", edit_blog_path(@blog), class: :prototype__btn %>
+      <%= link_to "Delete", blog_path(@blog), class: :prototype__btn, method: :delete %>
+    </div>
+  <% end %>
+
+  <p>
+    <%= video_tag(@blog.movie.to_s, height: "600px", width: "700px",  loop: true, autoplay: true, muted: true, controls: true) %>
+  </p>
+
+  <div class="page-center">
+    <div class="blog-container">
+      <div class="blog-item">
+        <div class="label highlight">Title:</div>
+        <div class="content"><%= @blog.title %></div>
       </div>
-    <% end %>
 
-    
-    <p>
-      <%= video_tag(@blog.movie.to_s, height: "600px", width: "700px",  loop: true, autoplay: true, muted: true, controls: true) %>
-    </p>
+      <div class="blog-item">
+        <div class="label highlight">Description:</div>
+        <div class="content"><%= @blog.description %></div>
+      </div>
 
-<div class="page-center">
-  <div class="blog-container">
-    <div class="blog-item">
-      <div class="label highlight">Title:</div>
-      <div class="content"><%= @blog.title %></div>
-    </div>
+      <div class="blog-item">
+        <div class="label highlight">Published at:</div>
+        <div class="content"><%= @blog.published_at.strftime('%Y-%m-%d (%A)') %></div>
+      </div>
 
-    <div class="blog-item">
-      <div class="label highlight">Description:</div>
-      <div class="content"><%= @blog.description %></div>
-    </div>
-
-    <div class="blog-item">
-  <div class="label highlight">Published at:</div>
-  <div class="content"><%= @blog.published_at.strftime('%Y-%m-%d (%A)') %></div>
-</div>
-
-
-
-
-
-    <div class="container">
-      <% if user_signed_in? %>
-        <%= form_with(model: [@blog, @comment], local: true) do |form| %>
-          <%= form.text_area :text, placeholder: "To comment", rows: "2" %>
-          <%= form.submit "SEND" %>
+      <div class="container">
+        <% if user_signed_in? %>
+          <%= form_with(model: [@blog, @comment], local: true) do |form| %>
+            <%= form.text_area :text, placeholder: "To comment", rows: "2" %>
+            <%= form.submit "SEND" %>
+          <% end %>
+        <% else %>
+          <strong><p>*You must be logged in to post comments!*</p></strong>
         <% end %>
-      <% else %>
-        <strong><p>*You must be logged in to post comments!*</p></strong>
-      <% end %>
 
-      <div class="comments">
-        <h4>＜Comment field＞</h4>
-        <% @comments.each do |comment| %>
-          <p>
-            <strong><%= link_to comment.user.name, "/users/#{comment.user_id}" %>：</strong>
-            <%= comment.text %>
-          </p>
-        <% end %>
+        <div class="comments">
+          <h4>＜Comment field＞</h4>
+          <% @comments.each do |comment| %>
+            <p>
+              <strong><%= link_to comment.user.name, "/users/#{comment.user_id}" %>：</strong>
+              <%= comment.text %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="text-center back-link">
+        <%= link_to 'Back', blogs_path, style: 'font-size: 50px' %>
       </div>
     </div>
-     <div class="text-center">
-      <%= link_to 'Back', blogs_path, style: 'font-size: 50px ' %>
-
-
   </div>
 </div>
+
