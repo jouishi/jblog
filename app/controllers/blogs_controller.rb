@@ -21,6 +21,8 @@ class BlogsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @blog.comments.includes(:user)
+    @blog = Blog.find(params[:id])
+
   end
 
   def edit
@@ -63,4 +65,8 @@ class BlogsController < ApplicationController
    def move_to_index
      
   end
+  def formatted_published_at
+    @blog.published_at.strftime('%Y-%m-%d (%A)')
+  end
+
 end

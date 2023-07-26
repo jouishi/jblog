@@ -162,5 +162,12 @@
   .content {
     margin-top: 5px; /* ラベルとコンテンツの間に余白を設定 */
   }
+  .label.highlight {
+    font-weight: bold;
+    font-size: 18px;
+    color: #FF0000; /* 赤色の文字色 */
+    border-bottom: 1px solid #000000; 
+  }
+  
   
   
