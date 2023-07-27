@@ -30,7 +30,7 @@ footer {
       <!-- 画像をtitleより上に移動 -->
       <% if @blog.image.present? %>
           <div class="content">
-            <%= image_tag(@blog.image_url, height: "300px", width: "400px") if @blog.image? %>
+            <%= image_tag(@blog.image_url, height: "100%", width: "100%") if @blog.image? %>
           </div>
       <% end %>
 

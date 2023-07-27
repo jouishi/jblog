@@ -8,6 +8,7 @@
     position: relative;
     z-index: 2;
   }
+  
 </style>
 <div class="sampleWrap">
   <div class="bkRGBA">
@@ -29,7 +30,7 @@
     <% if blog.movie.present? %>
       <%= video_tag(blog.movie.to_s, class: "card-img-top my-custom-video", loop: true, autoplay: true, muted: true, controls: true, width: "100%") %>
     <% else %>
-      <%= image_tag(blog.image_url, class: "card-img-top my-custom-image", width: "100%") if blog.image? %>
+      <%= image_tag(blog.image_url, class: "card-img-top my-custom-image", height:"50%",width: "50%") if blog.image? %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title" style="font-size: 16px !important;"><%= blog.title %></h5>
