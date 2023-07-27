@@ -58,7 +58,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:title, :description, :movie, :published_at).merge(user_id: current_user.id)
+    params.require(:blog).permit(:title, :description, :movie, :image, :published_at).merge(user_id: current_user.id)
   end
 
   # もし必要ならばmove_to_indexメソッドを定義してください

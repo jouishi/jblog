@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2023_07_16_110837) do
     t.string "title"
     t.text "description"
     t.string "movie"
+    t.string "image"
     t.date "published_at"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

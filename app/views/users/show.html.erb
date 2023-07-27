@@ -21,7 +21,11 @@
         <% @user.blogs.each do |blog| %>
           <!-- 各ブログのアイテム -->
           <div class="blog__item">
-            <%= video_tag(blog.movie.to_s, class: "blog__video", loop: true, autoplay: true, muted: true, controls: true) %>
+            <% if blog.movie.present? %>
+              <%= video_tag(blog.movie.to_s, class: "blog__video", loop: true, autoplay: true, muted: true, controls: true) %>
+            <% else %>
+              <%= image_tag(blog.image_url, class: "blog__image", width: "100%") if blog.image? %>
+            <% end %>
             <div class="blog__content">
               <h3 class="blog__title"><%= blog.title %></h3>
               <p class="blog__date">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
@@ -37,4 +41,3 @@
     </div>
   </div>
 </div>
-

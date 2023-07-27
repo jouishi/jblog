@@ -29,6 +29,15 @@
             <%= form.file_field :movie %>
           </div>
         </div>
+        <!-- 画像投稿用のフィールドを追加 -->
+        <div class='field'>
+          <div class='field-label'>
+            <%= form.label :image %>
+          </div>
+          <div class='field-input'>
+            <%= form.file_field :image %>
+          </div>
+        </div>
         <div class='field'>
           <div class='field-label'>
             <%= form.label :published_at %>
@@ -38,8 +47,8 @@
           </div>
         </div>
         <div class='actions'>
-            <%= form.submit "Create Blog", class: 'btn'%>
-          </div>
+          <%= form.submit "Create Blog", class: 'btn'%>
+        </div>
       <% end %>
     </div>
   </div>
