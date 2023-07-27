@@ -1,18 +1,17 @@
 <style>
   .contents {
-    margin-bottom: 100px; /* フッターの高さ以上のマージンを設定 */
+    margin-bottom: 100px; 
   }
 
   .blog__item {
     margin-bottom: 100px;
   }
 
-  /* 必要に応じて他のスタイルも調整可能 */
 </style>
 
 <div class="contents row">
   <% @blogs.each do |blog| %>
-    <div class="blog__item col-md-4 mt-3"> <!-- mt-3を追加 -->
+    <div class="blog__item col-md-4 mt-3"> 
       <% if blog.movie.present? %>
         <%= video_tag(blog.movie.to_s, class: "blog__video", loop: true, autoplay: true, muted: true, controls: true, width: "100%", height: "150px") %>
       <% else %>

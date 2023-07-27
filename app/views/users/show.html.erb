@@ -12,14 +12,12 @@
 
 <div class="main">
   <div class="inner">
-    <!-- ユーザーのブログ一覧表示 -->
     <div class="user__wrapper">
       <h2 class="page-heading">
         <%= @user.name %>'s blog
       </h2>
       <div class="user__card">
         <% @user.blogs.each do |blog| %>
-          <!-- 各ブログのアイテム -->
           <div class="blog__item">
             <% if blog.movie.present? %>
               <%= video_tag(blog.movie.to_s, class: "blog__video", loop: true, autoplay: true, muted: true, controls: true) %>
@@ -35,7 +33,6 @@
         <% end %>
       </div>
     </div>
-    <!-- Backボタンのスペースを追加 -->
     <div class="text-center back-link">
       <%= link_to 'Back', blogs_path, style: 'font-size: 50px' %>
     </div>

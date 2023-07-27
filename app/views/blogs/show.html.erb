@@ -27,26 +27,22 @@ footer {
   <div class="page-center">
     <div class="blog-container">
 
-      <!-- 画像をtitleより上に移動 -->
       <% if @blog.image.present? %>
           <div class="content">
             <%= image_tag(@blog.image_url, height: "100%", width: "100%") if @blog.image? %>
           </div>
       <% end %>
 
-      <!-- title -->
       <div class="blog-item">
         <div class="label highlight">Title:</div>
         <div class="content"><%= @blog.title %></div>
       </div>
 
-      <!-- description -->
       <div class="blog-item">
         <div class="label highlight">Description:</div>
         <div class="content"><%= @blog.description %></div>
       </div>
 
-      <!-- published_at -->
       <div class="blog-item">
         <div class="label highlight">Published at:</div>
         <div class="content"><%= @blog.published_at.strftime('%Y-%m-%d (%A)') %></div>
