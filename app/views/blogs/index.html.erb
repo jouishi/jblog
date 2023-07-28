@@ -24,24 +24,35 @@
     <% end %>
 
     <div class="row justify-content-center">
-      <% @blogs.each do |blog| %>
-        <div class="col-md-4">
-  <div class="card my-3 mx-md-auto d-flex flex-column align-items-stretch my-custom-card" style="width: 60%; min-height: 400px;">
-    <% if blog.movie.present? %>
-      <%= video_tag(blog.movie.to_s, class: "card-img-top my-custom-video", loop: true, autoplay: true, muted: true, controls: true, width: "100%") %>
-   <% else %>
-      <%= image_tag(blog.image_url, class: "card-img-top my-custom-image", height: "200px", width: "5%") if blog.image? %>
-     <% end %>
-    <div class="card-body">
-      <h5 class="card-title" style="font-size: 16px !important;"><%= blog.title %></h5>
-      <p class="card-text" style="font-size: 12px !important;">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
-      <p class="card-text" style="font-size: 12px !important;">name: <%= link_to blog.user.name, user_path(blog.user) %></p>
-      <%= link_to 'Show', blog, class: 'btn btn-dark', id: "show-link-#{blog.id}", style: 'color: red !important; font-size: 12px !important;' %>
+     <% @blogs.each do |blog| %>
+  <div class="col-md-4">
+    <div class="card my-3 mx-md-auto d-flex flex-column align-items-stretch my-custom-card" style="width: 60%; min-height: 400px;">
+      <% if blog.movie.present? %>
+        <%= link_to blog_path(blog) do %>
+          <%= video_tag(blog.movie.to_s, class: "card-img-top my-custom-video", loop: true, autoplay: true, muted: true, controls: true, width: "100%") %>
+        <% end %>
+      <% else %>
+        <% if blog.image? %>
+          <%= link_to blog_path(blog) do %>
+            <%= image_tag(blog.image_url, class: "card-img-top my-custom-image", height: "200px", width: "5%") %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title" style="font-size: 16px !important;"><%= blog.title %></h5>
+        <p class="card-text" style="font-size: 12px !important;">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
+        <p class="card-text" style="font-size: 12px !important;">name: <%= link_to blog.user.name, user_path(blog.user) %></p>
+        <%= link_to 'Show', blog, class: 'btn btn-dark', id: "show-link-#{blog.id}", style: 'color: red !important; font-size: 12px !important;' %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
-      <% end %>
+
+
+
+
+
     </div>
   </div>
 </div>
