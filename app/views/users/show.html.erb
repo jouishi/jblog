@@ -8,6 +8,13 @@
     position: relative;
     z-index: 2;
   }
+
+  /* コメントセクションを囲む枠のスタイル */
+  .blog__comments-wrapper {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+  }
 </style>
 
 <div class="main">
@@ -32,6 +39,10 @@
           </div>
         <% end %>
       </div>
+    </div>
+    <!-- コメントセクションを囲む枠 -->
+    <div class="blog__comments-wrapper">
+      <!-- コメントを表示するコードをここに追加 -->
     </div>
     <div class="text-center back-link">
       <%= link_to 'Back', blogs_path, style: 'font-size: 50px' %>
