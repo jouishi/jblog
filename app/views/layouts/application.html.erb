@@ -28,6 +28,14 @@
       .container.content {
         margin-top: 80px; 
       }
+      .greeting__link::after {
+    content: "!!";
+    background-image: linear-gradient(to bottom, yellow, white);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 40px;
+    font-family: 'Arial', sans-serif;
+  }
     </style>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -51,10 +59,11 @@
           <ul class="navbar-nav">
           <li class="nav-item">
           <% if user_signed_in? %>
-  <div class="greeting">
-  <%= link_to "Hello!", user_path(current_user), class: "greeting__link", style: "color:#FF8C00  !important; font-size: 40px; font-family: 'Arial', cursive;" %>
-  <%= link_to "#{current_user.name}!!", user_path(current_user), class: "greeting__link", style: "color: red !important; font-size: 40px; font-family: 'Arial', sans-serif;" %>
+<div class="greeting">
+  <%= link_to "Hello! #{current_user.name}", user_path(current_user), class: "greeting__link", style: "background-image: linear-gradient(to bottom, red, orange); -webkit-background-clip: text; color: transparent; font-size: 40px; font-family: 'Arial', cursive;" %>
 </div>
+
+
 <% end %>
             </li>
            

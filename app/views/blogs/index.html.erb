@@ -16,7 +16,10 @@
       <%= video_tag("theop.mp4", width: "95%", height: "50%", loop: true, autoplay: true, muted: true) %>
     </div> 
 
-    <h1 style="background-color: red; color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto; border: 10px solid black;">Blogs</h1>
+<h1 style="background-image: linear-gradient(to bottom, #FF0000, #FFA500); color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto; border: 10px solid black;">Blogs</h1>
+
+
+
 
     <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
       <%= form.text_field :keyword, placeholder: "Search", class: "search-input", style: "width: 30%; height: 50px; border: 2px solid #FFA500;" %>
