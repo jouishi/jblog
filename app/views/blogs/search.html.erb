@@ -1,27 +1,34 @@
 <style>
-  .contents {
-    margin-bottom: 100px; 
+   .back-link {
+    margin-bottom: 20px;
+    position: relative;
   }
-
-  .blog__item {
-    margin-bottom: 100px;
+  
+  footer {
+    z-index: 2;
   }
-
 </style>
 
 <div class="contents row">
-  <% @blogs.each do |blog| %>
-    <div class="blog__item col-md-4 mt-3"> 
-      <% if blog.movie.present? %>
-        <%= video_tag(blog.movie.to_s, class: "blog__video", loop: true, autoplay: true, muted: true, controls: true, width: "100%", height: "150px") %>
-      <% else %>
-        <%= image_tag(blog.image_url, class: "blog__image", width: "100%", height: "150px") if blog.image? %>
-      <% end %>
-      <div class="blog__content">
-        <h3 class="blog__title"><%= blog.title %></h3>
-        <p class="blog__date">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
-        <%= link_to 'Show', blog, class: 'btn btn-dark', style: 'color: red !important; font-size: 12px !important;' %>
+  <% if @blogs.empty? %>
+    <p>No search results found.</p>
+  <% else %>
+    <% @blogs.each do |blog| %>
+      <div class="blog__item col-md-4 mt-3"> 
+        <% if blog.movie.present? %>
+          <%= video_tag(blog.movie.to_s, class: "blog__video", loop: true, autoplay: true, muted: true, controls: true, width: "100%", height: "150px") %>
+        <% else %>
+          <%= image_tag(blog.image_url, class: "blog__image", width: "100%", height: "632px") if blog.image? %>
+        <% end %>
+        <div class="blog__content">
+          <h3 class="blog__title"><%= blog.title %></h3>
+          <p class="blog__date">create: <%= blog.published_at.strftime("%Y/%m/%d") %></p>
+          <%= link_to 'Show', blog, class: 'btn btn-dark', style: 'color: red !important; font-size: 12px !important;' %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
+</div>
+<div class="text-center back-link">
+  <%= link_to 'Back', blogs_path, style: 'font-size: 50px' %>
 </div>
