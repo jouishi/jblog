@@ -12,6 +12,9 @@ class BlogsController < ApplicationController
 
     # キーワードを使ってブログを検索
     @blogs = Blog.where("title LIKE ?", "%#{keyword}%").order(created_at: :desc)
+    @start_date = params[:start_date]
+    @blogs = Blog.where("published_at >= ?", @start_date) if @start_date.present?
+
   end
 
   def new
