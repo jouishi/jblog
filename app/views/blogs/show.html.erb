@@ -48,6 +48,12 @@ footer {
         <div class="content"><%= @blog.published_at.strftime('%Y-%m-%d (%A)') %></div>
       </div>
 
+       <div class="blog-item">
+        <div class="label highlight">Posted by:</div>
+        <%= link_to @blog.user.name, user_path(@blog.user) %>
+
+      </div>
+
       <div class="container">
         <% if user_signed_in? %>
           <%= form_with(model: [@blog, @comment], local: true) do |form| %>
