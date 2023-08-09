@@ -10,29 +10,44 @@
   }
   
 </style>
-  <style>
-    /* Your existing CSS styles here */
-    .mouse-stalker {
-      background: rgba(0, 128, 0, 0.4);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 12px;
-      height: 12px;
-      transition:
-        transform 0.6s,
-        width 0.5s, height 0.5s,
-        background-color 0.5s;
-      transition-timing-function: ease-out;
-      z-index: 999;
+<style>
+  /* Mouse Stalker CSS styles */
+  .mouse-stalker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
 
-      /* Hide on small screens */
-      @media screen and (max-width: 599px) {
-        display: none;
-      }
-    }
-  </style>
+  .outer-circle,
+  .inner-circle {
+    position: absolute;
+    transition: transform 0.6s, width 0.5s, height 0.5s;
+    transition-timing-function: ease-out;
+  }
+
+  .outer-circle {
+    width: 40px;
+    height: 40px;
+    border: 2px solid red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inner-circle {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+
   
 <div class="sampleWrap">
   <div class="bkRGBA">
@@ -43,6 +58,11 @@
 <h1 style="background-image: linear-gradient(to bottom, #FF0000, #FFA500); color: black; padding: 5px; text-align: center; width: fit-content; margin: 0 auto; border: 10px solid black;">Blogs</h1>
 
 
+<div class="mouse-stalker">
+  <div class="outer-circle">
+    <div class="inner-circle"></div>
+  </div>
+</div>
 
 
     <%= form_with(url: search_blogs_path, local: true, method: :get, class: "search-form") do |form| %>
@@ -106,32 +126,62 @@
     height: 200px; 
   }
 </style>
-      <script>
-    // JavaScript code to create and append the 'mouse-stalker' div
-    document.addEventListener('DOMContentLoaded', function() {
-      const stalker = document.createElement('div');
-      stalker.setAttribute('class', 'mouse-stalker');
-      document.body.appendChild(stalker);
-      
-      // Mouse move event listener
-      const mouseMove = (e) => {
-        stalker.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      };
-      
-      document.addEventListener('mousemove', mouseMove);
-    });
-  </script>
-
-
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // JavaScript code to create and append the 'mouse-stalker' div
+  const stalker = document.createElement('div');
+  stalker.setAttribute('class', 'mouse-stalker');
+  
+  const outerCircle = document.createElement('div');
+  outerCircle.setAttribute('class', 'outer-circle');
+  
+  const innerCircle = document.createElement('div');
+  innerCircle.setAttribute('class', 'inner-circle');
+  
+  outerCircle.appendChild(innerCircle);
+  stalker.appendChild(outerCircle);
+  
+  document.body.appendChild(stalker);
+
+  // Mouse move event listener
+  let mouseX = 0;
+  let mouseY = 0;
+
+  const updateMousePosition = (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  };
+
+  document.addEventListener('mousemove', updateMousePosition);
+
+  // Function to update stalker position with delay
+  const updateStalkerPosition = () => {
+    const stalkerElement = document.querySelector('.mouse-stalker');
+    const offsetX = (mouseX - parseInt(stalkerElement.style.left || 0)) / 10; // 適切な遅延を設定
+    const offsetY = (mouseY - parseInt(stalkerElement.style.top || 0)) / 10; // 適切な遅延を設定
+    
+    stalkerElement.style.left = `${parseInt(stalkerElement.style.left || 0) + offsetX}px`;
+    stalkerElement.style.top = `${parseInt(stalkerElement.style.top || 0) + offsetY}px`;
+
+    requestAnimationFrame(updateStalkerPosition);
+  };
+
+  requestAnimationFrame(updateStalkerPosition);
+
+  // Rest of the code...
+});
+
+
   <% @blogs.each do |blog| %>
     var showLink<%= blog.id %> = document.getElementById('show-link-<%= blog.id %>');
     showLink<%= blog.id %>.addEventListener('mouseover', function() {
       showLink<%= blog.id %>.style.color = 'yellow';
+      stalkerElement.classList.add('inverted'); // クラスを追加して色を反転
     });
 
     showLink<%= blog.id %>.addEventListener('mouseout', function() {
       showLink<%= blog.id %>.style.color = 'red';
+      stalkerElement.classList.remove('inverted'); // クラスを削除して元に戻す
     });
   <% end %>
 </script>
